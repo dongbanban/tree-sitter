@@ -38,8 +38,24 @@ async function main() {
     process.exit(1);
   }
 
-  // 3. 读取并解析目标文件
-  const sourceCode = fs.readFileSync(filePath, "utf8");
+  // 3. 读取并解析目标文件（Vue SFC 提取 script block）
+  const rawCode = fs.readFileSync(filePath, "utf8");
+  const ext = path.extname(filePath).toLowerCase();
+  let sourceCode = rawCode;
+  let scriptLineOffset = 0;
+  if (ext === ".vue") {
+    const scriptMatch = rawCode.match(
+      /<script(?:[^>]*)>\n?((?:[\s\S]*?))<\/script>/,
+    );
+    if (!scriptMatch) {
+      console.log(`--- [TREE-SITTER ERROR] ---`);
+      console.log(`Vue 文件中未找到 <script> 块。`);
+      console.log(`---------------------------`);
+      process.exit(0);
+    }
+    scriptLineOffset = rawCode.slice(0, scriptMatch.index).split("\n").length;
+    sourceCode = scriptMatch[1];
+  }
   const tree = parser.parse(sourceCode);
 
   // 4. 定义可以匹配各种 JS/TS 声明（普通函数、箭头函数、类组件、自定义 Hook）的通用 Query
@@ -69,9 +85,9 @@ async function main() {
   if (foundNode) {
     console.log(`--- [TREE-SITTER SUCCESS] ---`);
     console.log(`目标名称: ${targetFuncName}`);
-    console.log(
-      `代码位置: L${foundNode.startPosition.row + 1} - L${foundNode.endPosition.row + 1}`,
-    );
+    const startLine = foundNode.startPosition.row + 1 + scriptLineOffset;
+    const endLine = foundNode.endPosition.row + 1 + scriptLineOffset;
+    console.log(`代码位置: L${startLine} - L${endLine}`);
     console.log(`\n${foundNode.text}\n`);
     console.log(`-----------------------------`);
   } else {
