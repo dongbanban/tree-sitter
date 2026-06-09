@@ -7,7 +7,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const Parser = require("web-tree-sitter");
+const { Parser, Language, Query } = require("web-tree-sitter");
 
 async function main() {
   // 接收参数：tree-sitter-slice <文件路径> <函数或组件名>
@@ -30,7 +30,7 @@ async function main() {
     console.error(`Error: 找不到语法解析文件: ${wasmPath}`);
     process.exit(1);
   }
-  const Lang = await Parser.Language.load(wasmPath);
+  const Lang = await Language.load(wasmPath);
   parser.setLanguage(Lang);
 
   if (!fs.existsSync(filePath)) {
@@ -47,23 +47,20 @@ async function main() {
     [
       (function_declaration name: (identifier) @name)
       (variable_declarator name: (identifier) @name value: (arrow_function))
-      (class_declaration name: (identifier) @name)
+      (class_declaration name: (type_identifier) @name)
       (method_definition name: (property_identifier) @name)
     ]
   `;
 
-  const query = Lang.query(queryString);
+  const query = new Query(Lang, queryString);
   const matches = query.matches(tree.rootNode);
 
   let foundNode = null;
   for (const match of matches) {
     const nameNode = match.captures.find((c) => c.name === "name")?.node;
     if (nameNode && nameNode.text === targetFuncName) {
-      // 提取完整的节点（如果是箭头函数，需要拿到它的外层变量声明节点）
-      foundNode =
-        match.pattern === 1
-          ? match.captures[0].node.parent
-          : match.captures[0].node;
+      // 所有 pattern 的 @name capture 都是标识符节点，parent 才是完整声明节点
+      foundNode = match.captures[0].node.parent;
       break;
     }
   }
