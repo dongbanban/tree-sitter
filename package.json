@@ -1,7 +1,7 @@
 {
   "name": "@dongbanban/tree-sitter",
-  "version": "2.1.0",
-  "description": "专为 AI Skill 设计的 Tree-sitter 代码切片工具，支持 JS/TS/JSX/TSX/Vue",
+  "version": "2.2.0",
+  "description": "专为 AI 设计的 Tree-sitter 代码切片工具，支持 JS/TS/JSX/TSX/Vue",
   "main": "index.js",
   "bin": {
     "tree-sitter-slice": "./index.js"
@@ -21,7 +21,7 @@
     "url": "git+https://github.com/dongbanban/tree-sitter.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "dongbanban",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dongbanban/tree-sitter/issues"
