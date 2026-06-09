@@ -5,7 +5,7 @@
 
 # @dongbanban/tree-sitter
 
-专为 GitHub Copilot Skill 设计的精准代码切片工具，支持 `.js` / `.ts` / `.jsx` / `.tsx`。
+专为 GitHub Copilot Skill 设计的精准代码切片工具，支持 `.js` / `.ts` / `.jsx` / `.tsx` / `.vue`。
 
 安装后自动注入 Copilot Skill，Copilot 即可通过 `npx tree-sitter-slice` 按需切片目标函数，避免读取整个大文件。
 
@@ -38,6 +38,7 @@ npx tree-sitter-slice <FILE_PATH> <SYMBOL_NAME>
 npx tree-sitter-slice src/utils/helpers.js formatDate
 npx tree-sitter-slice src/components/Button.tsx Button
 npx tree-sitter-slice src/hooks/useAuth.ts useAuth
+npx tree-sitter-slice src/components/MyComp.vue MyComp
 ```
 
 **输出格式：**
@@ -58,12 +59,13 @@ function formatDate(value, format) {
 
 ## 支持的声明类型
 
-| 类型         | 示例                     |
-| ------------ | ------------------------ |
-| 普通函数     | `function foo() {}`      |
-| 箭头函数变量 | `const foo = () => {}`   |
-| 类           | `class Foo {}`           |
-| 类方法       | `class Foo { bar() {} }` |
+| 类型         | 示例                                                           |
+| ------------ | -------------------------------------------------------------- |
+| 普通函数     | `function foo() {}`                                            |
+| 箭头函数变量 | `const foo = () => {}`                                         |
+| 类           | `class Foo {}`                                                 |
+| 类方法       | `class Foo { bar() {} }`                                       |
+| Vue SFC      | `.vue` 文件内 `<script>` / `<script setup>` 中的任意函数或变量 |
 
 ---
 
@@ -78,6 +80,7 @@ npx tree-sitter-slice <file> <name>
   └── index.js
         ├── web-tree-sitter (Parser + Language + Query)
         ├── parsers/tree-sitter-tsx.wasm  ← 通吃 js/ts/jsx/tsx
+        ├── .vue → 提取 <script> 块 → TSX parser（行号自动偏移）
         └── 输出匹配 symbol 的完整代码节点
 ```
 
