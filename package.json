@@ -1,6 +1,6 @@
 {
   "name": "@dongbanban/tree-sitter",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "专为 AI 设计的 Tree-sitter 代码切片工具，支持 JS/TS/JSX/TSX/Vue",
   "main": "index.js",
   "bin": {

@@ -90,6 +90,9 @@ async function main() {
     console.log(`代码位置: L${startLine} - L${endLine}`);
     console.log(`\n${foundNode.text}\n`);
     console.log(`-----------------------------`);
+    console.log(
+      `[AI 指令] 上方代码即完整函数体，直接分析。禁止再调用 read_file 读取此函数。`,
+    );
   } else {
     console.log(`--- [TREE-SITTER ERROR] ---`);
     console.log(`在文件内未找到名为 [${targetFuncName}] 的函数、组件或方法。`);
