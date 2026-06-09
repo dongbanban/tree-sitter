@@ -28,9 +28,8 @@ function init() {
     );
   }
 
-  // 2. 无论哪种场景，我们都去创建 .github/skills/tree-sitter/SKILL.md
-  // 本地开发时，它会直接生成在你自己的 /tree-sitter/.github/... 下方便你检查效果
-  const targetDir = path.join(projectRoot, ".github", "skills", "tree-sitter");
+  // 2. 写入 .agents/skills/tree-sitter/SKILL.md（跨编辑器通用路径）
+  const targetDir = path.join(projectRoot, ".agents", "skills", "tree-sitter");
   const targetFile = path.join(targetDir, "SKILL.md");
   const templatePath = path.join(__dirname, "SKILL_TEMPLATE.md");
 
@@ -44,11 +43,11 @@ function init() {
 
     if (isInstalled) {
       console.log("\n🚀 成功！已自动为您的项目配置 GitHub Copilot Skill。");
-      console.log(`📂 已写入: .github/skills/tree-sitter/SKILL.md\n`);
+      console.log(`📂 已写入: .agents/skills/tree-sitter/SKILL.md\n`);
     } else {
       console.log("✅ 本地测试 Skill 生成成功！");
       console.log(
-        "📂 请查看当前目录下的: .github/skills/tree-sitter/SKILL.md\n",
+        "📂 请查看当前目录下的: .agents/skills/tree-sitter/SKILL.md\n",
       );
     }
   } catch (error) {

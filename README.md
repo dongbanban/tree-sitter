@@ -17,7 +17,7 @@
 npm i @dongbanban/tree-sitter -D
 ```
 
-`postinstall` 钩子自动执行，将 Skill 写入项目的 `.github/skills/tree-sitter/SKILL.md`。
+`postinstall` 钉子自动执行，将 Skill 写入项目的 `.agents/skills/tree-sitter/SKILL.md`。
 
 ---
 
@@ -74,7 +74,7 @@ function formatDate(value, format) {
 ```
 npm install
   └── postinstall → install-skill.js
-        └── 写入 .github/skills/tree-sitter/SKILL.md
+        └── 写入 .agents/skills/tree-sitter/SKILL.md
 
 npx tree-sitter-slice <file> <name>
   └── index.js
@@ -86,7 +86,7 @@ npx tree-sitter-slice <file> <name>
 
 `install-skill.js` 通过 `__dirname.includes('node_modules')` 判断运行场景：
 
-- **被安装**：写入宿主项目根目录的 `.github/skills/tree-sitter/SKILL.md`
+- **被安装**：写入宿主项目根目录的 `.agents/skills/tree-sitter/SKILL.md`
 - **本地开发**：写入自身仓库根目录，方便验证模板效果
 
 ---
