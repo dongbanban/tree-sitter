@@ -1,0 +1,33 @@
+{
+  "name": "@dongbanban/tree-sitter",
+  "version": "1.0.0",
+  "description": "专为 AI Skill 设计的 Tree-sitter 代码切片工具，支持 JS/TS/JSX/TSX",
+  "main": "index.js",
+  "bin": {
+    "tree-sitter-slice": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "parsers/"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dongbanban/tree-sitter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dongbanban/tree-sitter/issues"
+  },
+  "homepage": "https://github.com/dongbanban/tree-sitter#readme",
+  "dependencies": {
+    "web-tree-sitter": "^0.26.9"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
