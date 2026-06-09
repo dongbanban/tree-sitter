@@ -42,7 +42,7 @@ function init() {
     fs.writeFileSync(targetFile, skillContent, "utf8");
 
     if (isInstalled) {
-      console.log("\n🚀 成功！已自动为您的项目配置 GitHub Copilot Skill。");
+      console.log("\n🚀 成功！已自动为您的项目配置 Tree Sitter Skill。");
       console.log(`📂 已写入: .agents/skills/tree-sitter/SKILL.md\n`);
     } else {
       console.log("✅ 本地测试 Skill 生成成功！");

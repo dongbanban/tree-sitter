@@ -1,11 +1,11 @@
 ---
 name: tree-sitter
-description: 当用户要求重构、分析、解释或检查某段特定的 JS/TS/JSX/TSX 函数、React 组件或 Hook 时，使用此技能进行精准代码切片。
+description: 当用户要求重构、分析、解释或检查某段特定的 JS/TS/JSX/TSX/Vue 函数、React 组件或 Hook 时，使用此技能进行精准代码切片。
 ---
 
 # tree-sitter 精准代码切片器
 
-作为 GitHub Copilot，当用户向你询问某个具体文件（支持 .js, .ts, .jsx, .tsx）中的具体组件、函数或方法时，你必须调用本技能来获取精准的上下文，禁止直接读取整个大文件。
+当用户向你询问某个具体文件（支持 .js, .ts, .jsx, .tsx, .vue）中的具体组件、函数或方法时，你必须调用本技能来获取精准的上下文，禁止直接读取整个大文件。
 
 ## 🤖 你的操作指令
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * @file: @dongbanban/tree-sitter/index.js
+ * @file: /Users/i104/tree-sitter/index.js
  * @author: dongbanban
  */
 
@@ -81,7 +81,7 @@ async function main() {
     }
   }
 
-  // 5. 格式化输出给 Copilot 读取
+  // 5. 格式化输出
   if (foundNode) {
     console.log(`--- [TREE-SITTER SUCCESS] ---`);
     console.log(`目标名称: ${targetFuncName}`);

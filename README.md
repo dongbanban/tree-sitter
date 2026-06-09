@@ -5,9 +5,9 @@
 
 # @dongbanban/tree-sitter
 
-专为 GitHub Copilot Skill 设计的精准代码切片工具，支持 `.js` / `.ts` / `.jsx` / `.tsx` / `.vue`。
+精准代码切片工具，支持 `.js` / `.ts` / `.jsx` / `.tsx` / `.vue`。
 
-安装后自动注入 Copilot Skill，Copilot 即可通过 `npx tree-sitter-slice` 按需切片目标函数，避免读取整个大文件。
+安装后自动注入 IDE Skill 路径下，Agent 即可通过 `npx tree-sitter-slice` 按需切片目标函数，避免读取整个大文件。
 
 ---
 
